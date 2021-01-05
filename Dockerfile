@@ -53,11 +53,12 @@ USER cgap-admin
 WORKDIR /home/cgap-admin
 RUN git clone https://github.com/dbmi-bgm/cgap-portal.git
 
-# Build the back-end
+# Build, configure the back-end
 WORKDIR /home/cgap-admin/cgap-portal
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 RUN poetry install && poetry run python setup_eb.py develop 
-
+RUN make aws-ip-ranges
+RUN cat /dev/urandom | head -c 256 | base64 > session-secret.b64
 
 # Execute commands with docker run -it cgap-ingestion-docker:<version> poetry run <cmd> <arguments>
 
