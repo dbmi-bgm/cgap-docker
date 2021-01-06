@@ -51,7 +51,7 @@ USER cgap-admin
 
 # Clone to /home/cgap-admin/cgap-portal
 WORKDIR /home/cgap-admin
-RUN git clone https://github.com/dbmi-bgm/cgap-portal.git
+RUN git clone https://github.com/dbmi-bgm/cgap-portal.git && cd cgap-portal && git checkout c4_503 && cd ..
 
 # Build, configure the back-end
 WORKDIR /home/cgap-admin/cgap-portal
