@@ -8,11 +8,6 @@ MAINTAINER William Ronchetti "william_ronchetti@hms.harvard.edu"
 RUN apt-get update
 RUN apt-get -y install emacs vim
 
-# Open postgres, ES ports
-# XXX: This doesn't seem to work for postgres
-EXPOSE 5441
-EXPOSE 9200
-
 # Environment Configuration
 # Adapated from https://github.com/python-poetry/poetry/discussions/1879
 # Don't buffer output from Python
@@ -51,7 +46,7 @@ USER cgap-admin
 
 # Clone to /home/cgap-admin/cgap-portal
 WORKDIR /home/cgap-admin
-RUN git clone https://github.com/dbmi-bgm/cgap-portal.git && cd cgap-portal && git checkout c4_503 && cd ..
+RUN git clone https://github.com/dbmi-bgm/cgap-portal.git && cd cgap-portal && git checkout c4_508 && cd ..
 
 # Build, configure the back-end
 WORKDIR /home/cgap-admin/cgap-portal
