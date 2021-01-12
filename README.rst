@@ -17,7 +17,7 @@ For reference on the dcicutils API, see ``dcicutils.beanstalk_utils.get_beanstal
 
 The aforementioned function just issues an API call to Elastic Beanstalk, requesting the environment configuration of
 the environment we'd like to simulate. The boto3 function is called ``describe_configuration_settings``, additional info
-on this function specifically can be found `here.<https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/elasticbeanstalk.html#ElasticBeanstalk.Client.describe_configuration_settings>`_
+on this function specifically can be found `here<https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/elasticbeanstalk.html#ElasticBeanstalk.Client.describe_configuration_settings>`_.
 Note that as of right now, IAM users require ``BeanstalkFullAccess`` to run this method. We should further consider IAM policies
 surrounding this capability, as this API could be a pathway to privilege escalation.
 
@@ -37,9 +37,9 @@ that we can disable SSH altogether.
 
 The following invocation will trigger variant ingestion on fourfront-cgapwolf given all of the following conditions are true:
 
-** The Docker container is invoked from an AWS Service that assumes an IAM role with sufficient permissions.
-** The invocation location is within the VPC/subnet of the underlying back-end resources. That is, in our current setup, if the caller is not within the VPC, they will not be able to access the RDS, therefore simulation will fail.
-** The VCF file has been mounted to an accessible location. In this example it has been copied into the repo directory.
+- The Docker container is invoked from an AWS Service that assumes an IAM role with sufficient permissions.
+- The invocation location is within the VPC/subnet of the underlying back-end resources. That is, in our current setup, if the caller is not within the VPC, they will not be able to access the RDS, therefore simulation will fail.
+- The VCF file has been mounted to an accessible location. In this example it has been copied into the repo directory.
 
 ``docker run -it cgap-ingestion-docker:0.0.0b0 bash -c "poetry run simulate-environment fourfront-cgapwolf && poetry run ingestion src/encoded/annotations/variant_table_v0.5.0.csv src/encoded/schemas/annotation_field.json src/encoded/schemas/variant.json src/encoded/schemas/variant_sample.json GAPFI4LHHWB6.vcf cgap-core hms-dbmi src/encoded/annotations/gene_table_v0.4.6.csv src/encoded/schemas/gene_annotation_field.json src/encoded/schemas/gene.json src/encoded/schemas/gene_annotation_field.json cgap-core hms-dbmi production.ini --app-name app --post-variants"``
 
@@ -50,19 +50,19 @@ For more information on the specifics of the ``ingestion`` command, see cgap-por
 General TODOs
 #############
 
-** Integrate into Tibanna for automated invocation (short term)
-** Build/maintain main container and sub-containers on ECR (medium term)
-** Port for fourfront (medium/long term)
-** Allow for indexer simulation (medium/long term)
-** Further containerize into back-end and front-end, deploy to ECS/EKS/Fargate (long term)
+- Integrate into Tibanna for automated invocation (short term)
+- Build/maintain main container and sub-containers on ECR (medium term)
+- Port for fourfront (medium/long term)
+- Allow for indexer simulation (medium/long term)
+- Further containerize into back-end and front-end, deploy to ECS/EKS/Fargate (long term)
 
 
 ##############
 Security TODOs
 ##############
 
-** When integrating with Tibanna, disable SSH/other access points (short term)
-** Configure a least-privilege IAM role for assumption by the service invoking the container (EC2). Right now an overly permissive role is used. (short term)
+- When integrating with Tibanna, disable SSH/other access points (short term)
+- Configure a least-privilege IAM role for assumption by the service invoking the container (EC2). Right now an overly permissive role is used. (short term)
 
 
 ****************
