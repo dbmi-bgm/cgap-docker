@@ -1,16 +1,22 @@
 ###########
-cgap-docker
+CGAP-Docker
 ###########
 
 Docker Components for CGAP. For now, this consists of a single Dockerfile that will provision the application back-end. This component can be invoked to run commands on the back-end resources of any CGAP environment without interacting with the main application (Beanstalk). This repo at this time only requires Docker to be installed on the machine.
 
+##############
+Pre-requisites
+##############
+
+For local development, only Docker is required. For running in production, see the end of the below section. Note that it is possible to run this component with
+the local deployment, though that is not the intended use case.
 
 ############
 How it works
 ############
 
 CGAP-Docker containerizes the back-end of the CGAP Portal. It does this by provisioning a Python3.6 base image and
-installing the application the standard way. The application now includes a special command called
+installing the application the standard way (via Poetry). The application now includes a special command called
 ``simulate_environment`` that utilizes an API in ``dcicutils.beanstalk_utils`` to grab the environment variables passed to
 the specified Beanstalk on creation. These variables contain sensitive information necessary to run the application.
 For reference on the dcicutils API, see ``dcicutils.beanstalk_utils.get_beanstalk_environment_variables``.
