@@ -51,25 +51,6 @@ The following invocation will trigger variant ingestion on fourfront-cgapwolf gi
 For more information on the specifics of the ``ingestion`` command, see cgap-portal. Note that this command just ingests variants, it does not configure sample processing or other associated metadata.
 
 
-#############
-General TODOs
-#############
-
-- Integrate into Tibanna for automated invocation (short term)
-- Build/maintain main container and sub-containers on ECR (medium term)
-- Port for fourfront (medium/long term)
-- Allow for indexer simulation (medium/long term)
-- Further containerize into back-end and front-end, deploy to ECS/EKS/Fargate (long term)
-
-
-##############
-Security TODOs
-##############
-
-- When integrating with Tibanna, disable SSH/other access points (short term)
-- Configure a least-privilege IAM role for assumption by the service invoking the container (EC2). Right now an overly permissive role is used. (short term)
-
-
 ****************
 Images Directory
 ****************
