@@ -24,7 +24,7 @@ For reference on the dcicutils API, see ``dcicutils.beanstalk_utils.get_beanstal
 
 The aforementioned function just issues an API call to Elastic Beanstalk, requesting the environment configuration of
 the environment we'd like to simulate. The boto3 function is called ``describe_configuration_settings``, additional info
-on this function specifically can be found `here<https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/elasticbeanstalk.html#ElasticBeanstalk.Client.describe_configuration_settings>`_.
+on this function specifically can be found `here <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/elasticbeanstalk.html#ElasticBeanstalk.Client.describe_configuration_settings>`_.
 We should further consider IAM policies surrounding this capability.
 
 The information contained in these configuration settings is sufficient to simulate the application server by connecting
